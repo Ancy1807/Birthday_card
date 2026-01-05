@@ -2,157 +2,223 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Aristo 🎉</title>
 
 <style>
 body {
-    background: linear-gradient(to bottom right, #ffd6e8, #fff5cc);
+    margin: 0;
     font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: white;
+}
+
+/* ---------- FRONT PAGE ---------- */
+#cover {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0ea5e9, #1e3a8a);
     text-align: center;
-    padding-top: 40px;
+    cursor: pointer;
 }
 
-h1 {
-    color: #ff4f81;
-    font-size: 3em;
+#cover h1 {
+    font-size: 2.5em;
+    letter-spacing: 2px;
 }
 
-p {
-    font-size: 1.2em;
-    color: #444;
+/* ---------- CARD PAGE ---------- */
+#card {
+    display: none;
+    min-height: 100vh;
+    background: linear-gradient(to right, #020617, #0f172a);
+    padding: 20px;
+}
+
+.card-container {
+    background: #020617;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* LEFT MESSAGE */
+.left {
+    flex: 1;
+    border-right: 1px solid #1e293b;
+    padding-right: 15px;
+}
+
+.left h2 {
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+.left p {
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+/* RIGHT CAKE */
+.right {
+    flex: 1;
+    text-align: center;
 }
 
 .cake {
-    position: relative;
-    margin: 60px auto;
-    width: 260px;
-    height: 160px;
-    background: pink;
+    margin: 40px auto;
+    width: 180px;
+    height: 110px;
+    background: #38bdf8;
     border-radius: 10px;
-    box-shadow: 0 8px 0 #e68ab0;
+    position: relative;
 }
 
 .cake::before {
     content: "";
     position: absolute;
-    top: -30px;
-    left: 0;
-    width: 260px;
-    height: 30px;
-    background: #ffb6c1;
+    top: -25px;
+    width: 180px;
+    height: 25px;
+    background: #7dd3fc;
     border-radius: 10px 10px 0 0;
 }
 
 .candle {
     position: absolute;
-    bottom: 160px;
-    width: 12px;
-    height: 40px;
-    background: #fff;
-    border-radius: 4px;
+    bottom: 110px;
+    width: 10px;
+    height: 35px;
+    background: white;
+    border-radius: 3px;
 }
 
 .flame {
-    width: 12px;
-    height: 16px;
+    width: 10px;
+    height: 14px;
     background: orange;
     border-radius: 50%;
-    margin-top: -18px;
+    margin-top: -16px;
     animation: flicker 0.2s infinite;
 }
 
 @keyframes flicker {
     0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    50% { transform: scale(1.15); }
     100% { transform: scale(1); }
+}
+
+button {
+    background: #0ea5e9;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 1em;
+    cursor: pointer;
 }
 
 .wish {
     display: none;
-    font-size: 1.4em;
-    color: #2c7a7b;
-    margin-top: 30px;
-}
-
-.from {
-    margin-top: 40px;
+    margin-top: 15px;
+    color: #7dd3fc;
     font-size: 1.1em;
-    color: #555;
-    font-style: italic;
 }
 
-button {
-    padding: 12px 24px;
-    border: none;
-    background: #ff4f81;
-    color: white;
-    border-radius: 25px;
-    cursor: pointer;
+/* MOBILE */
+@media (max-width: 768px) {
+    .card-container {
+        flex-direction: column;
+    }
+    .left {
+        border-right: none;
+        border-bottom: 1px solid #1e293b;
+        padding-bottom: 15px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<h1>🎉 Happy Birthday Aristo 🎉</h1>
-<p>Blow into your mic to blow out the candles 🎂💨</p>
-
-<button onclick="startMic()">Enable Microphone 🎤</button>
-
-<div class="cake">
-    <div class="candle" style="left:60px"><div class="flame"></div></div>
-    <div class="candle" style="left:120px"><div class="flame"></div></div>
-    <div class="candle" style="left:180px"><div class="flame"></div></div>
+<!-- FRONT PAGE -->
+<div id="cover" onclick="openCard()">
+    <h1>HAPPY BIRTHDAY<br>ARISTO 🎉</h1>
 </div>
 
-<div class="wish" id="wish">
-✨ Wish made, Aristo! ✨  
-<br>May this year bring you happiness and peace 💫
-</div>
+<!-- CARD PAGE -->
+<div id="card">
+    <div class="card-container">
 
-<div class="from">— From Ancy 💕</div>
+        <!-- LEFT -->
+        <div class="left">
+            <h2>HAPPY BIRTHDAY</h2>
+            <p>
+                May this year bring you<br>
+                happiness, peace,<br>
+                and everything you deserve
+            </p>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right">
+            <button onclick="startMic()">Enable Microphone 🎤</button>
+
+            <div class="cake">
+                <div class="candle" style="left:45px"><div class="flame"></div></div>
+                <div class="candle" style="left:85px"><div class="flame"></div></div>
+                <div class="candle" style="left:125px"><div class="flame"></div></div>
+            </div>
+
+            <div class="wish" id="wish">
+                ✨ Wish made, Aristo! ✨
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <script>
-let audioContext;
-let analyser;
-let micStream;
-let blown = false;
+let analyser, dataArray, blown = false;
+
+function openCard() {
+    document.getElementById("cover").style.display = "none";
+    document.getElementById("card").style.display = "block";
+}
 
 function startMic() {
     navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(stream => {
-            audioContext = new AudioContext();
-            micStream = audioContext.createMediaStreamSource(stream);
-            analyser = audioContext.createAnalyser();
-            analyser.fftSize = 256;
-            micStream.connect(analyser);
-            listenForBlow();
-        })
-        .catch(() => {
-            alert("Microphone access is needed to blow the candles 🎂");
-        });
+    .then(stream => {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioCtx.createMediaStreamSource(stream);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 1024;
+        dataArray = new Uint8Array(analyser.fftSize);
+        source.connect(analyser);
+        detectBlow();
+    })
+    .catch(() => alert("Please allow microphone access 🎤"));
 }
 
-function listenForBlow() {
-    const data = new Uint8Array(analyser.frequencyBinCount);
-
-    function detect() {
-        analyser.getByteFrequencyData(data);
-        let volume = data.reduce((a, b) => a + b) / data.length;
-
-        if (volume > 50 && !blown) {   // sensitivity
-            blowCandles();
-            blown = true;
-        }
-        requestAnimationFrame(detect);
+function detectBlow() {
+    analyser.getByteTimeDomainData(dataArray);
+    let sum = 0;
+    for (let i = 0; i < dataArray.length; i++) {
+        let v = (dataArray[i] - 128) / 128;
+        sum += v * v;
     }
-    detect();
-}
+    let volume = Math.sqrt(sum / dataArray.length);
 
-function blowCandles() {
-    document.querySelectorAll('.flame')
-        .forEach(f => f.style.display = 'none');
-    document.getElementById('wish').style.display = 'block';
+    if (volume > 0.15 && !blown) {
+        document.querySelectorAll(".flame").forEach(f => f.style.display = "none");
+        document.getElementById("wish").style.display = "block";
+        blown = true;
+    }
+    requestAnimationFrame(detectBlow);
 }
 </script>
 
