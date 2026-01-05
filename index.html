@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Aristo</title>
+<title>Happy Birthday Aristo 🎉</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -46,12 +46,12 @@ body {
     gap: 30px;
 }
 
-/* LEFT MESSAGE (hidden initially) */
+/* LEFT MESSAGE (hidden first) */
 .text {
     flex: 1;
     opacity: 0;
     transform: translateX(-20px);
-    transition: all 0.8s ease;
+    transition: all 1s ease;
 }
 
 .text.show {
@@ -67,7 +67,7 @@ body {
 
 .text p {
     font-size: 1.2em;
-    line-height: 1.6;
+    line-height: 1.7;
     font-weight: 300;
 }
 
@@ -91,26 +91,41 @@ button {
 /* CAKE */
 .cake {
     margin: 40px auto;
-    width: 180px;
-    height: 110px;
-    background: #38bdf8;
-    border-radius: 12px;
+    width: 200px;
+    height: 120px;
+    background: linear-gradient(to bottom, #ff9acb, #ff6fae);
+    border-radius: 14px;
     position: relative;
+    box-shadow: 0 8px 20px rgba(255,105,180,0.4);
 }
 
 .cake::before {
     content: "";
     position: absolute;
-    top: -25px;
-    width: 180px;
-    height: 25px;
-    background: #7dd3fc;
-    border-radius: 12px 12px 0 0;
+    top: -28px;
+    width: 200px;
+    height: 28px;
+    background: #ffd1e6;
+    border-radius: 14px 14px 0 0;
+}
+
+/* frosting drips */
+.cake::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 200px;
+    height: 20px;
+    background: radial-gradient(circle at 20px 10px, #ffd1e6 10px, transparent 11px),
+                radial-gradient(circle at 60px 10px, #ffd1e6 10px, transparent 11px),
+                radial-gradient(circle at 100px 10px, #ffd1e6 10px, transparent 11px),
+                radial-gradient(circle at 140px 10px, #ffd1e6 10px, transparent 11px),
+                radial-gradient(circle at 180px 10px, #ffd1e6 10px, transparent 11px);
 }
 
 .candle {
     position: absolute;
-    bottom: 110px;
+    bottom: 120px;
     width: 10px;
     height: 35px;
     background: white;
@@ -120,7 +135,7 @@ button {
 .flame {
     width: 10px;
     height: 14px;
-    background: orange;
+    background: radial-gradient(circle, #ffd700, #ff8c00);
     border-radius: 50%;
     margin-top: -16px;
     animation: flicker 0.2s infinite;
@@ -134,7 +149,7 @@ button {
 
 .wish {
     display: none;
-    color: #7dd3fc;
+    color: #ffd1e6;
     font-size: 1.1em;
     margin-top: 15px;
 }
@@ -151,21 +166,24 @@ button {
 
 <body>
 
+<!-- MUSIC -->
+<audio id="music" src="birthday.mp3"></audio>
+
 <!-- COVER -->
 <div id="cover" onclick="openMain()">
-    <h1>HAPPY BIRTHDAY<br>ARISTO</h1>
+    <h1>🎉 HAPPY BIRTHDAY<br>ARISTO 🎉</h1>
 </div>
 
 <!-- MAIN -->
 <div id="main">
     <div class="layout">
 
-        <!-- LEFT (hidden first) -->
+        <!-- LEFT -->
         <div class="text" id="leftText">
-            <h2>HAPPY BIRTHDAY</h2>
+            <h2>🎂 HAPPY BIRTHDAY 🎂</h2>
             <p>
-                May this year bring you happiness,<br>
-                peace, and everything you deserve.
+                May this year bring you happiness 😊,<br>
+                peace 🕊️, and everything you deserve ✨
             </p>
         </div>
 
@@ -174,13 +192,13 @@ button {
             <button onclick="startMic()">Enable Microphone 🎤</button>
 
             <div class="cake">
-                <div class="candle" style="left:45px"><div class="flame"></div></div>
-                <div class="candle" style="left:85px"><div class="flame"></div></div>
-                <div class="candle" style="left:125px"><div class="flame"></div></div>
+                <div class="candle" style="left:50px"><div class="flame"></div></div>
+                <div class="candle" style="left:95px"><div class="flame"></div></div>
+                <div class="candle" style="left:140px"><div class="flame"></div></div>
             </div>
 
             <div class="wish" id="wish">
-                ✨ Wish made, Aristo ✨
+                ✨ Wish made, Aristo 💖
             </div>
         </div>
 
@@ -222,6 +240,7 @@ function detectBlow() {
         document.querySelectorAll(".flame").forEach(f => f.style.display = "none");
         document.getElementById("wish").style.display = "block";
         document.getElementById("leftText").classList.add("show");
+        document.getElementById("music").play();
         blown = true;
     }
     requestAnimationFrame(detectBlow);
